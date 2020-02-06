@@ -1,0 +1,121 @@
+server:
+  port: 8083
+  http2:
+    enabled: true
+spring:
+  http:
+    encoding:
+      force: true
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/district?characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8&rewriteBatchedStatements=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: null
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 15
+      auto-commit: true
+      idle-timeout: 30000
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+      connection-init-sql: SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci
+  #    type: com.alibaba.druid.pool.DruidDataSource
+  #    druid:
+  #      filters: stat
+  #      maxActive: 20
+  #      initialSize: 5
+  #      maxWait: 60000
+  #      minIdle: 1
+  #      timeBetweenEvictionRunsMillis: 60000
+  #      testWhileIdle: true
+  #      testOnBorrow: false
+  #      testOnReturn: false
+  #      poolPreparedStatements: true
+  #      maxOpenPreparedStatements: 20
+  #      connection-init-sqls: "SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci"
+  #      stat-view-servlet:
+  #        login-username: device
+  #        login-password: 123457
+  #        allow: 127.0.0.1
+  #      filter:
+  #        slf4j:
+  #          statement-executable-sql-log-enable: true
+  #          enabled: true
+  #          connection-log-enabled: false
+  #          data-source-log-enabled: false
+  #  aop:
+  #    proxy-target-class: true
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    locale: zh_CN
+    default-property-inclusion: non_null
+    serialization:
+      write_dates_as_timestamps: false
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQL57InnoDBDialect
+    properties:
+      hibernate:
+        order_inserts: true
+        order_updates: true
+        batch_versioned_data: true
+        generate_statistics: true
+        jdbc.batch_size: 100
+        formate-sql: true
+#  data:
+#    mongodb:
+#      uri: mongodb://127.0.0.1/sac-devices
+#  cache:
+#    type: simple
+#  rabbitmq:
+#    host: localhost
+#    port: 5672
+#    username: guest
+#    password: guest
+#  zipkin:
+#    base-url: http://localhost:9411/
+#  sleuth:
+#    sampler:
+#      probability: 1
+logging:
+  level:
+    root: warn
+    #    druid.sql.Statement: debug
+    #    org.hibernate.type: trace
+    #    org.hibernate.SQL: debug
+    com.meiling.sac: info
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+#feign:
+#  hystrix:
+#    enabled: true
+##请求处理的超时时间
+#ribbon.ReadTimeout: 60000
+##请求连接的超时时间
+#ribbon.ConnectTimeout: 30000
+#hystrix:
+#  command:
+#    default:
+#      execution:
+#        isolation:
+#          strategy: SEMAPHORE
+#          thread:
+#            timeoutInMilliseconds: 60000
+#app:
+#  upload-temp-dir: /upload/
+#  mq:
+#    topic-exchange-name: sac.ctrl
+#    routing-key-status: sac.ctrl.status
+#    routing-key-cmd: sac.ctrl.cmd
+#    routing-key-exception: sac.ctrl.exception

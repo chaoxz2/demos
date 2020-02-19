@@ -43,8 +43,8 @@ public class District implements Serializable {
     @Column(columnDefinition = "VARCHAR(255) COMMENT '区域中心点'")
     private String center;
 
-    @Enumerated
-    @Column(columnDefinition = "TINYINT NOT NULL COMMENT '行政区划级别'")
+    @Enumerated(EnumType.STRING)
+    @Column(name = "level", columnDefinition = "VARCHAR(20) COMMENT '行政区划级别'")
     private Level level;
 
     @OneToMany(mappedBy = "parent", cascade = {CascadeType.REFRESH, CascadeType.REMOVE}, orphanRemoval = true)

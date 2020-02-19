@@ -1,10 +1,10 @@
 package com.goldfish666.virus.po;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,6 +16,7 @@ import java.util.Date;
  * @date : 2020/2/5 10:52
  */
 @Entity
+@Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -26,14 +27,6 @@ public class VirusData implements Serializable {
     @GeneratedValue(generator = "uuid")
     @Column(columnDefinition = "varchar(50) NOT NULL COMMENT '实体ID'")
     private String id;
-
-    /**
-     * 创建时间
-     */
-    @Column(name = "create_time", updatable = false, columnDefinition = "datetime NOT NULL COMMENT '创建时间'")
-    @Temporal(TemporalType.TIMESTAMP)
-    @CreatedDate
-    private Date createTime;
 
     /**
      * 日期
@@ -49,4 +42,8 @@ public class VirusData implements Serializable {
     @JoinColumn(name = "district_id", nullable = true, columnDefinition = "varchar(50) comment '地区'")
     private District district;
 
+    /**
+     * 数量
+     */
+    private int count;
 }

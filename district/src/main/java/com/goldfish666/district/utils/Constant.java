@@ -9,7 +9,6 @@ public class Constant {
 
     public static final String rootURL = "https://restapi.amap.com/v3/config/district";
 
-    // 在高德地图申请的key
-    public static final String key = "**************";
+    public static final String key = "c1d6082d803ef61f4f570b67be973edd";
 
 }
